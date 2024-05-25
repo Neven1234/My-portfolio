@@ -68,7 +68,7 @@ footer {
 
 /* Adjust image size */
 .about-image img {
-    max-width: 70%;
+    max-width:100%;
     border-radius: 50%; /* For rounded images */
 }
 /* .project-image {
@@ -159,7 +159,7 @@ footer {
 }
 .project-description {
     overflow: hidden;
-    max-height: 8em; /* Three lines at 1.5em line height */
+    max-height: 40em; /* Three lines at 1.5em line height */
     line-height: 2em; /* Adjust line height for better readability */
     margin-bottom: 10px; /* Remove any margin that may add extra height */
     white-space: normal; /* Allow text to wrap to multiple lines */
