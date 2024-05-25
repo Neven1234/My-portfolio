@@ -1,17 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { project } from './project';
 import { skill } from './skill';
-
+import { animate, style, transition, trigger } from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  animations: [
+    trigger('slideAnimation', [ // Updated animation trigger name
+      transition('* => *', [
+        style({ opacity: 0 }),
+        animate('0.5s', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
-export class AppComponent {
+export class AppComponent   {
+ 
   title = 'Neven-Ahmed';
-  project={
-   
-  }
   projects:project[]=[
     {
       title:'Recipes Web site',
@@ -71,4 +78,27 @@ export class AppComponent {
     { name:'Git/GitHub',
     level:"Advanced"},
   ]
+
+  currentIndex: number = 0;
+
+  get currentProject(): project {
+    return this.projects[this.currentIndex];
+  }
+
+  nextProject(): void {
+    this.currentIndex = (this.currentIndex + 1) % this.projects.length;
+  }
+
+  previousProject(): void {
+    this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
+  }
+
+  getAnimationDirection(index: number): string {
+    if (index > this.currentIndex) {
+      return 'slideAnimation';
+    } else {
+      return 'slideAnimationLeft';
+    }
+  }
+  
 }
